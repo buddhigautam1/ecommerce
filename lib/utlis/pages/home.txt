@@ -1,0 +1,92 @@
+Column(
+        children: [
+          CarouselSlider(
+            options: CarouselOptions(
+              height: 200.0,
+              autoPlay: true,
+              enlargeCenterPage: true,
+              aspectRatio: 16/9,
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enableInfiniteScroll: true,
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              viewportFraction: 0.8,
+            ),
+            items: imgList.map((item) => Container(
+              child: Center(
+                child: Image.network(
+                  item,
+                  fit: BoxFit.contain,
+                  width: MediaQuery.of(context).size.width,
+                ),
+              ),
+            )).toList(),
+          ),
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 1.0,
+                mainAxisSpacing: 1.0,
+              ),
+              itemCount: itemCount.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () => print('Pressed item $index'),
+                  child: Container(
+                    margin: const EdgeInsets.all( 8.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(itemCount[index]),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+
+        //final List<String> itemCount = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"];
+ // final List<String> imgList = [
+  //  'https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg',
+   // 'https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg',
+ // ];
+ Container(
+              color: Colors.blue[900],
+              padding: EdgeInsets.all(0),
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: -0.3 * MediaQuery.of(context).size.height,
+                    right: -0.35 * MediaQuery.of(context).size.width,
+                    child: CircularContainerWidget(
+                      height: 300,
+                      width: MediaQuery.of(context).size.width,
+                      radius: 400,
+                      backgroundColor: Colors.blue,
+                    ),
+                  ),
+                   Positioned(
+                    top: -0.1 * MediaQuery.of(context).size.height,
+                    right: -0.35 * MediaQuery.of(context).size.width,
+                    child: CircularContainerWidget(
+                      height: 300,
+                      width: MediaQuery.of(context).size.width,
+                      radius: 400,
+                      backgroundColor: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
+            )
